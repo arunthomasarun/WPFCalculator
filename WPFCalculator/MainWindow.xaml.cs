@@ -21,6 +21,8 @@ namespace WPFCalculator
     public partial class MainWindow : Window
     {
         double lastNumber, result;
+        SelectedOperator selectedOperator;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -52,12 +54,44 @@ namespace WPFCalculator
             lblResult.Content = 0;
         }
 
-        private void btn7_Click(object sender, RoutedEventArgs e)
+        private void NumberButton_Click(object sender, RoutedEventArgs e)
         {
+            int selectedValue = int.Parse((sender as Button).Content.ToString());
+
             if (lblResult.Content.ToString() == "0")
-                lblResult.Content = 7;
+            {
+                lblResult.Content = $"{selectedValue}";
+            }
             else
-                lblResult.Content = $"{lblResult.Content}7";
+            {
+                lblResult.Content = $"{lblResult.Content}{selectedValue}";
+            }
         }
+
+        private void OperationButton_Click(object sender, RoutedEventArgs e)
+        {
+            //When an Operation button is clicked, assign the last number to lastNumber and reset the UI 
+            if (double.TryParse(lblResult.Content.ToString(), out lastNumber))
+            {
+                lblResult.Content = "0";
+            }
+
+            if (sender == btnMultiply)
+                selectedOperator = SelectedOperator.Multiplication;
+            if (sender == btnDivide)
+                selectedOperator = SelectedOperator.Division;
+            if (sender == btnPlus)
+                selectedOperator = SelectedOperator.Addition;
+            if (sender == btnMinus)
+                selectedOperator = SelectedOperator.Sustraction;
+        }
+    }
+
+    public enum SelectedOperator
+    {
+        Addition,
+        Sustraction,
+        Multiplication,
+        Division
     }
 }
