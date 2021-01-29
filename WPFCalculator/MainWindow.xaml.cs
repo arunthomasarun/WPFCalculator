@@ -68,6 +68,31 @@ namespace WPFCalculator
             }
         }
 
+        private void btnEqual_Click(object sender, RoutedEventArgs e)
+        {
+            double newNumber;
+            if (double.TryParse(lblResult.Content.ToString(), out newNumber))
+            {
+                switch (selectedOperator)
+                {
+                    case SelectedOperator.Addition:
+                        result = SimpleMath.Add(lastNumber, newNumber);
+                        break;
+                    case SelectedOperator.Sustraction:
+                        result = SimpleMath.Sustraction(lastNumber, newNumber);
+                        break;
+                    case SelectedOperator.Multiplication:
+                        result = SimpleMath.Multiply(lastNumber, newNumber);
+                        break;
+                    case SelectedOperator.Division:
+                        result = SimpleMath.Divide(lastNumber, newNumber);
+                        break;
+                }
+
+                lblResult.Content = result.ToString();
+            }
+        }
+
         private void OperationButton_Click(object sender, RoutedEventArgs e)
         {
             //When an Operation button is clicked, assign the last number to lastNumber and reset the UI 
@@ -93,5 +118,34 @@ namespace WPFCalculator
         Sustraction,
         Multiplication,
         Division
+    }
+
+    public class SimpleMath
+    {
+        public static double Add(double n1, double n2)
+        {
+            return n1 + n2;
+        }
+
+        public static double Sustraction(double n1, double n2)
+        {
+            return n1 - n2;
+        }
+
+        public static double Multiply(double n1, double n2)
+        {
+            return n1 * n2;
+        }
+
+        public static double Divide(double n1, double n2)
+        {
+            if (n2 == 0)
+            {
+                MessageBox.Show("Division by 0 is not supported", "Wrong operation", MessageBoxButton.OK, MessageBoxImage.Error);
+                return 0;
+            }
+
+            return n1 / n2;
+        }
     }
 }
