@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:WPFCalculator"
         mc:Ignorable="d"
         Title="Calculator" Height="525" Width="350">
+  <Window.Resources>
+    <SolidColorBrush x:Key="SymbolKeyColor" Color="Orange">     
+    </SolidColorBrush>
+  </Window.Resources>
+  
     <Grid Margin="10">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -26,7 +31,7 @@
     <Button Content="AC" x:Name="btnAC" Margin="5" Grid.Row="1" Grid.Column="0"></Button>
     <Button Content="+/-" x:Name="btnPlusMinus" Margin="5" Grid.Row="1" Grid.Column="1"></Button>
     <Button Content="%" x:Name="btnPercentage" Margin="5" Grid.Row="1" Grid.Column="2"></Button>
-    <Button Content="/" x:Name="btnDivide" Margin="5" Grid.Row="1" Grid.Column="3" Click="OperationButton_Click"></Button>
+    <Button Content="/" x:Name="btnDivide" Margin="5" Grid.Row="1" Grid.Column="3" Click="OperationButton_Click" Background="{StaticResource SymbolKeyColor}"></Button>
 
     <Button Content="7" x:Name="btn7" Margin="5" Grid.Row="2" Grid.Column="0" Click="NumberButton_Click"></Button>
     <Button Content="8" x:Name="btn8" Margin="5" Grid.Row="2" Grid.Column="1" Click="NumberButton_Click"></Button>
@@ -34,7 +39,7 @@
     <Button Content="*" x:Name="btnMultiply" Margin="5" Grid.Row="2" Grid.Column="3" Click="OperationButton_Click"></Button>
 
     <Button Content="4" x:Name="btn4" Margin="5" Grid.Row="3" Grid.Column="0" Click="NumberButton_Click"></Button>
-    <Button Content="5" x:Name="btn5" Margin="5" Grid.Row="3" Grid.Column="1" Click="NumberButton_Click"></Button>
+    <Button Content="5" x:Name="btn5" Margin="5" Grid.Row="3" Grid.Column="1" Click="NumberButton_Click" Background="{StaticResource numberKeyColor}"></Button>
     <Button Content="6" x:Name="btn6" Margin="5" Grid.Row="3" Grid.Column="2" Click="NumberButton_Click"></Button>
     <Button Content="-" x:Name="btnMinus" Margin="5" Grid.Row="3" Grid.Column="3" Click="OperationButton_Click"></Button>
 
